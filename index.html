@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculate Sum, Average and Closest Field Example</title>
+    <script>
+      function calculate() {
+        var fields = document.getElementsByClassName("field");
+        var sum = 0;
+        for (var i = 0; i < fields.length; i++) {
+          sum += parseFloat(fields[i].value) || 0;
+        }
+        var average = sum / fields.length;
+        document.getElementById("sum").innerHTML = "Sum: " + sum;
+        document.getElementById("average").innerHTML = "Average: " + average.toFixed(2);
+        var closestDiff = Infinity;
+        var closestField;
+        for (var i = 0; i < fields.length; i++) {
+          var diff = Math.abs(average - parseFloat(fields[i].value));
+          if (diff < closestDiff) {
+            closestDiff = diff;
+            closestField = fields[i];
+          }
+        }
+        document.getElementById("closest").innerHTML = "Closest Field: " + closestField.id;
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      <label for="field1">1: </label>
+      <input type="text" id="field1" class="field" size="10">
+      <label for="field2">2: </label>
+      <input type="text" id="field2" class="field" size="10">
+      <label for="field3">3: </label>
+      <input type="text" id="field3" class="field" size="10">
+      <label for="field4">4: </label>
+      <input type="text" id="field4" class="field" size="10">
+      <label for="field5">5: </label>
+      <input type="text" id="field5" class="field" size="10">
+    </p>
+    <p>
+      <label for="field6">6: </label>
+      <input type="text" id="field6" class="field" size="10">
+      <label for="field7">7: </label>
+      <input type="text" id="field7" class="field" size="10">
+      <label for="field8">8: </label>
+      <input type="text" id="field8" class="field" size="10">
+      <label for="field9">9: </label>
+      <input type="text" id="field9" class="field" size="10">
+      <label for="field10">10: </label>
+      <input type="text" id="field10" class="field" size="10">
+    </p>
+    <button onclick="calculate()">Calculate</button>
+    <br>
+    <span id="sum"></span>
+    <br>
+    <span id="average"></span>
+    <br>
+    <span id="closest"></span>
+  </body>
+</html>
