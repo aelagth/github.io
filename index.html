@@ -49,9 +49,9 @@
                 return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
             }, 0);
 
-            console.log("합:", total);
-            console.log("평균:", average);
-            console.log("평균에 가장 가까운 박스 번호:", closestIndex + 1);
+            document.getElementById('result-sum').innerText = `합: ${total}`;
+            document.getElementById('result-average').innerText = `평균: ${average}`;
+            document.getElementById('result-closest').innerText = `평균에 가장 가까운 박스 번호: ${closestIndex + 1}`;
         });
 
         resetBtn.addEventListener('click', () => {
