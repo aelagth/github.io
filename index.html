@@ -1,78 +1,59 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Calculate Sum, Average and Closest Field Example</title>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 입력</title>
+    <style>
+        input, button {
+            font-size: 24px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="number-form">
+        <div id="input-container">
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+            <input type="number" class="number-input" required><br>
+        </div>
+        <button type="button" id="submit-btn">제출</button>
+        <button type="button" id="reset-btn">초기화</button>
+    </form>
+
     <script>
-      function calculate() {
-        var fields = document.getElementsByClassName("field");
-        var sum = 0;
-        for (var i = 0; i < fields.length; i++) {
-          sum += parseFloat(fields[i].value) || 0;
-        }
-        var average = sum / fields.length;
-        document.getElementById("sum").innerHTML = "Sum: " + sum;
-        document.getElementById("average").innerHTML = "Average: " + average.toFixed(2);
-        var closestDiff = Infinity;
-        var closestField;
-        for (var i = 0; i < fields.length; i++) {
-          var diff = Math.abs(average - parseFloat(fields[i].value));
-          if (diff < closestDiff) {
-            closestDiff = diff;
-            closestField = fields[i];
-          }
-        }
-        document.getElementById("closest").innerHTML = "Closest Field: " + closestField.id;
-      }
+        const numberInputs = document.querySelectorAll('.number-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const resetBtn = document.getElementById('reset-btn');
+
+        submitBtn.addEventListener('click', () => {
+            const numbers = Array.from(numberInputs).map(input => parseInt(input.value));
+            const total = numbers.reduce((sum, num) => sum + num, 0);
+            const average = total / numbers.length;
+            const closestIndex = numbers.reduce((closest, num, index) => {
+                return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
+            }, 0);
+
+            console.log("입력한 숫자들:", numbers);
+            console.log("합:", total);
+            console.log("평균:", average);
+            console.log("평균에 가장 가까운 박스 번호:", closestIndex + 1);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            numberInputs.forEach(input => {
+                input.value = '';
+            });
+        });
     </script>
-  </head>
-  <body>
-    <p>
-      <label for="field1">1번: </label>
-      <input type="text" id="field1" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field2">2번: </label>
-      <input type="text" id="field2" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field3">3번: </label>
-      <input type="text" id="field3" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field4">4번: </label>
-      <input type="text" id="field4" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field5">5번: </label>
-      <input type="text" id="field5" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field6">6번: </label>
-      <input type="text" id="field6" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field7">7번: </label>
-      <input type="text" id="field7" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field8">8번: </label>
-      <input type="text" id="field8" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field9">9번: </label>
-      <input type="text" id="field9" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <p>
-      <label for="field10">10번: </label>
-      <input type="text" id="field10" class="field" style="width:200px;height:50px;font-size:30px;">
-    </p>
-    <button onclick="calculate()">Calculate</button>
-    <br>
-    <span id="sum"></span>
-    <br>
-    <span id="average"></span>
-    <br>
-    <span id="closest"></span>
-  </body>
+</body>
 </html>
