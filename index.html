@@ -36,7 +36,6 @@
         const resetBtn = document.getElementById('reset-btn');
 
         submitBtn.addEventListener('click', () => {
-            const numbers = Array.from(numberInputs).map(input => parseInt(input.value));
             const total = numbers.reduce((sum, num) => sum + num, 0);
             const average = total / numbers.length;
             const closestIndex = numbers.reduce((closest, num, index) => {
