@@ -15,16 +15,16 @@
 <body>
     <form id="number-form">
         <div id="input-container">
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
-            <input type="number" class="number-input" required><br>
+            <label for="number-input-1">1번</label><input id="number-input-1" type="number" class="number-input" required><br>
+            <label for="number-input-2">2번</label><input id="number-input-2" type="number" class="number-input" required><br>
+            <label for="number-input-3">3번</label><input id="number-input-3" type="number" class="number-input" required><br>
+            <label for="number-input-4">4번</label><input id="number-input-4" type="number" class="number-input" required><br>
+            <label for="number-input-5">5번</label><input id="number-input-5" type="number" class="number-input" required><br>
+            <label for="number-input-6">6번</label><input id="number-input-6" type="number" class="number-input" required><br>
+            <label for="number-input-7">7번</label><input id="number-input-7" type="number" class="number-input" required><br>
+            <label for="number-input-8">8번</label><input id="number-input-8" type="number" class="number-input" required><br>
+            <label for="number-input-9">9번</label><input id="number-input-9" type="number" class="number-input" required><br>
+            <label for="number-input-10">10번</label><input id="number-input-10" type="number" class="number-input" required><br>
         </div>
         <button type="button" id="submit-btn">제출</button>
         <button type="button" id="reset-btn">초기화</button>
@@ -43,7 +43,6 @@
                 return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
             }, 0);
 
-            console.log("입력한 숫자들:", numbers);
             console.log("합:", total);
             console.log("평균:", average);
             console.log("평균에 가장 가까운 박스 번호:", closestIndex + 1);
