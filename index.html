@@ -5,35 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>숫자 입력</title>
     <style>
-     .number-input {
-       width: 150px;
-       height: 150px;
-       appearance: none;
-       background-color: transparent;
-       border: none;
-       outline: none;
-       transform: rotate(-135deg);
-       transform-origin: 50% 100%;
-     }
-     .number-input::-webkit-slider-runnable-track {
-       background-color: #ddd;
-       border-radius: 50px;
-       height: 10px;
-       position: relative;
-       top: 70px;
-     }
-     .number-input::-webkit-slider-thumb {
-       appearance: none;
-       background-color: #007bff;
-       border-radius: 50%;
-       cursor: pointer;
-       height: 40px;
-       margin-left: -20px;
-       margin-top: -15px;
-       width: 40px;
-       position: relative;
-       z-index: 1;
-     }
+      .number-input {
+        width: calc(80% - 20px);
+        margin: 10px;
+        padding: 10px;
+        text-align: center; /* 숫자 가운데 정렬 */
+        font-size: 20px;
+      }
      .input-row {
        display: flex;
        margin-bottom: 10px;
@@ -61,7 +39,7 @@
       }
 
     </style>
-    <input type="range" min="0" max="50" step="1" class="number-input">
+
 </head>
 <body>
   <div id="input-container">
