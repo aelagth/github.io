@@ -106,20 +106,29 @@
             const numberInputs = document.querySelectorAll('.number-input');
 
         function calculate() {
-            const numbers = Array.from(numberInputs).map(input => parseInt(input.value));
-            const total = numbers.reduce((sum, num) => sum + num, 0);
-            const average = total / numbers.length;
-            const closestIndex = numbers.reduce((closest, num, index) => {
-              return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
-              }, 0);
-            const closestLabelNumbers = [4, 5, 6]; // 19를 가진 입력칸의 라벨 번호
-            const closestLabels = closestLabelNumbers.map(n => document.querySelector(`label[for="number-input-${n}"]`).innerText);
-            const closestLabel = closestLabels.map(n => parseInt(n.slice(0, -1))).sort((a, b) => a - b)[0];
+            const numbers = [
+             parseInt(document.getElementById('number-input-1').value),
+             parseInt(document.getElementById('number-input-2').value),
+             parseInt(document.getElementById('number-input-3').value),
+             parseInt(document.getElementById('number-input-4').value),
+             parseInt(document.getElementById('number-input-5').value),
+             parseInt(document.getElementById('number-input-6').value),
+             parseInt(document.getElementById('number-input-7').value),
+             parseInt(document.getElementById('number-input-8').value),
+             parseInt(document.getElementById('number-input-9').value),
+             parseInt(document.getElementById('number-input-10').value)
+           ];
 
-            document.getElementById('result-sum').innerText = `합: ${total}`;
-            document.getElementById('result-average').innerText = `평균: ${average.toFixed(2)}`;
-            document.getElementById('result-closest').innerText = `평균에 가장 가까운 주수 번호: ${closestLabel}번`;
-            }
+           const total = numbers.reduce((sum, num) => sum + num, 0);
+           const average = total / numbers.length;
+           const closestIndex = numbers.reduce((closest, num, index) => {
+             return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
+           }, 0);
+
+           document.getElementById('result-sum').innerText = `합: ${total}`;
+           document.getElementById('result-average').innerText = `평균: ${average.toFixed(2)}`;
+           document.getElementById('result-closest').innerText = `평균에 가장 가까운 주수는 label for="number-input-${closestIndex + 1}" 입니다.`;
+         }
 
             submitBtn.addEventListener('click', calculate);
 
