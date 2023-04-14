@@ -104,18 +104,19 @@
             const resetBtn = document.getElementById('reset-btn');
             const numberInputs = document.querySelectorAll('.number-input');
 
-            function calculate() {
-                const numbers = Array.from(numberInputs).map(input => parseInt(input.value));
-                const total = numbers.reduce((sum, num) => sum + num, 0);
-                const average = total / numbers.length;
-                const closestIndex = numbers.reduce((closest, num, index) => {
-                    return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
-                }, 0);
+        function calculate() {
+            const numbers = Array.from(numberInputs).map(input => parseInt(input.value));
+            const total = numbers.reduce((sum, num) => sum + num, 0);
+            const average = total / numbers.length;
+            const closestIndex = numbers.reduce((closest, num, index) => {
+               return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
+            }, 0);
+            const closestLabel = document.querySelector(`label[for=number-input-${closestIndex+1}]`).innerText;
 
-                document.getElementById('result-sum').innerText = `합: ${total}`;
-                document.getElementById('result-average').innerText = `평균: ${average.toFixed(2)}`;
-                document.getElementById('result-closest').innerText = `평균에 가장 가까운 주수 번호: ${closestIndex + 1}`;
-            }
+            document.getElementById('result-sum').innerText = `합: ${total}`;
+            document.getElementById('result-average').innerText = `평균: ${average.toFixed(2)}`;
+            document.getElementById('result-closest').innerText = `평균에 가장 가까운 주수 번호: ${closestLabel}`;
+        }
 
             submitBtn.addEventListener('click', calculate);
 
