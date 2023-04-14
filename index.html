@@ -11,21 +11,22 @@
         padding: 10px;
         font-size: 24px;
       }
-      .input-row {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 10px;
-      }
+     .input-row {
+       display: flex;
+       margin-bottom: 10px;
+       justify-content: space-between;
+     }
 
-      .label-container, .input-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .label-container label, .input-container input {
-        width: 100%;
-      }
+     .input-row div {
+       width: calc(50% - 5px);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+     }
+ 
+     .input-row label {
+       text-align: center;
+     }
       #submit-btn,
       #reset-btn {
         font-size: 24px;
@@ -35,59 +36,58 @@
     </style>
 </head>
 <body>
-    <form id="number-form">
-      <div id="input-container">
-        <div class="input-row">
-          <div class="label-container">
-            <label for="number-input-1">1번</label>
-            <label for="number-input-6">6번</label>
-          </div>
-          <div class="input-container">
-            <input id="number-input-1" type="number" class="number-input" required>
-            <input id="number-input-6" type="number" class="number-input" required>
-          </div>
+    <div id="input-container">
+      <div class="input-row">
+        <div>
+          <label for="number-input-1">1번 (숫자 입력칸)</label>
+          <input id="number-input-1" type="number" class="number-input" required>
         </div>
-        <div class="input-row">
-          <div class="label-container">
-            <label for="number-input-2">2번</label>
-            <label for="number-input-7">7번</label>
-          </div>
-          <div class="input-container">
-            <input id="number-input-2" type="number" class="number-input" required>
-            <input id="number-input-7" type="number" class="number-input" required>
-          </div>
-        </div>
-        <div class="input-row">
-          <div class="label-container">
-            <label for="number-input-3">3번</label>
-            <label for="number-input-8">8번</label>
-          </div>
-          <div class="input-container">
-            <input id="number-input-3" type="number" class="number-input" required>
-            <input id="number-input-8" type="number" class="number-input" required>
-          </div>
-        </div>
-        <div class="input-row">
-          <div class="label-container">
-            <label for="number-input-4">4번</label>
-            <label for="number-input-9">9번</label>
-          </div>
-          <div class="input-container">
-            <input id="number-input-4" type="number" class="number-input" required>
-            <input id="number-input-9" type="number" class="number-input" required>
-          </div>
-        </div>
-        <div class="input-row">
-          <div class="label-container">
-            <label for="number-input-5">5번</label>
-            <label for="number-input-10">10번</label>
-          </div>
-          <div class="input-container">
-            <input id="number-input-5" type="number" class="number-input" required>
-            <input id="number-input-10" type="number" class="number-input" required>
-          </div>
+        <div>
+          <label for="number-input-6">6번 (숫자 입력칸)</label>
+          <input id="number-input-6" type="number" class="number-input" required>
         </div>
       </div>
+      <div class="input-row">
+        <div>
+          <label for="number-input-2">2번 (숫자 입력칸)</label>
+          <input id="number-input-2" type="number" class="number-input" required>
+        </div>
+        <div>
+          <label for="number-input-7">7번 (숫자 입력칸)</label>
+          <input id="number-input-7" type="number" class="number-input" required>
+        </div>
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="number-input-3">3번 (숫자 입력칸)</label>
+          <input id="number-input-3" type="number" class="number-input" required>
+        </div>
+        <div>
+          <label for="number-input-8">8번 (숫자 입력칸)</label>
+          <input id="number-input-8" type="number" class="number-input" required>
+        </div>
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="number-input-4">4번 (숫자 입력칸)</label>
+          <input id="number-input-4" type="number" class="number-input" required>
+        </div>
+        <div>
+          <label for="number-input-9">9번 (숫자 입력칸)</label>
+          <input id="number-input-9" type="number" class="number-input" required>
+        </div>
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="number-input-5">5번 (숫자 입력칸)</label>
+          <input id="number-input-5" type="number" class="number-input" required>
+        </div>
+        <div>
+          <label for="number-input-10">10번 (숫자 입력칸)</label>
+          <input id="number-input-10" type="number" class="number-input" required>
+        </div>
+      </div>
+    </div>
         <button type="button" id="submit-btn">계산</button>
         <button type="button" id="reset-btn">초기화</button>
     </form>
