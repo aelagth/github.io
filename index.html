@@ -28,15 +28,21 @@
      .input-row label {
        text-align: center;
      }
-      #submit-btn,
+        
+     #submit-btn,
       #reset-btn {
         font-size: 24px;
         margin: 10px;
         padding: 10px;
+        width: calc(66% - 20px); /* 버튼 크기를 화면의 2/3로 설정 */
       }
+      .button-container {
+        display: flex;
+        justify-content: center; /* 버튼 가운데 정렬 */
+        
       #result-container p {
         font-size: 20px;
-      }
+     }
 
     </style>
 
@@ -72,9 +78,12 @@
         <td><input id="number-input-10" type="number" pattern="\d*" class="number-input" required></td>
      </tr>
     </table>
-
-        <button type="button" id="submit-btn">계산</button>
-        <button type="button" id="reset-btn">초기화</button>
+        <div class="button-container">
+            <button type="button" id="submit-btn">계산</button>
+        </div>
+        <div class="button-container">
+            <button type="button" id="reset-btn">초기화</button>
+        </div>
     </form>
 
     <div id="result-container">
