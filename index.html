@@ -30,19 +30,23 @@
      }
         
      #submit-btn,
-      #reset-btn {
+      #reset-btn,
+      #prev-btn,
+      #next-btn {
         font-size: 24px;
         margin: 10px;
         padding: 10px;
-        width: calc(66% - 20px); /* 버튼 크기를 화면의 2/3로 설정 */
+        width: calc(33% - 20px); /* 버튼 크기를 화면의 1/3로 설정 */
       }
+        
       .button-container {
         display: flex;
         justify-content: center; /* 버튼 가운데 정렬 */
+      }
         
       #result-container p {
-        font-size: 40px;
-     }
+        font-size: 40px; /* 결과 글자 크기 변경 */
+      }
 
     </style>
 
@@ -79,7 +83,9 @@
      </tr>
     </table>
         <div class="button-container">
+            <button type="button" id="prev-btn">이전</button>
             <button type="button" id="submit-btn">계산</button>
+            <button type="button" id="next-btn">다음</button>
         </div>
         <div class="button-container">
             <button type="button" id="reset-btn">초기화</button>
@@ -96,8 +102,31 @@
         document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submit-btn');
             const resetBtn = document.getElementById('reset-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
             const numberInputs = document.querySelectorAll('.number-input');
+        
+            // 이전 및 다음 버튼 이벤트 리스너
+            prevBtn.addEventListener('click', () => {
+                const focusedInput = document.activeElement;
+                if (focusedInput.classList.contains('number-input')) {
+                    const currentId = parseInt(focusedInput.id.split('-')[2]);
+                    if (currentId > 1) {
+                        document.getElementById(`number-input-${currentId - 1}`).focus();
+                    }
+                }
+            });
 
+            nextBtn.addEventListener('click', () => {
+                const focusedInput = document.activeElement;
+                if (focusedInput.classList.contains('number-input')) {
+                    const currentId = parseInt(focusedInput.id.split('-')[2]);
+                    if (currentId < 10) {
+                        document.getElementById(`number-input-${currentId + 1}`).focus();
+                    }
+                }
+            });
+            
         function calculate() {
             const numbers = [
              parseInt(document.getElementById('number-input-1').value),
