@@ -111,16 +111,19 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const numberInputs = document.querySelectorAll('.number-input');
-           
-            // 각 숫자 입력 칸의 tabIndex 설정
+
+            let focusedInput = null;
+
             numberInputs.forEach((input, index) => {
                 input.tabIndex = index + 1;
+                input.addEventListener('focus', () => {
+                    focusedInput = input;
+                });
             });
 
             // 이전 및 다음 버튼 이벤트 리스너
             prevBtn.addEventListener('click', () => {
-                const focusedInput = document.activeElement;
-                if (focusedInput.classList.contains('number-input')) {
+                if (focusedInput && focusedInput.classList.contains('number-input')) {
                     const currentId = parseInt(focusedInput.id.split('-')[2]);
                     if (currentId > 1) {
                         document.getElementById(`number-input-${currentId - 1}`).focus();
@@ -129,8 +132,7 @@
             });
 
             nextBtn.addEventListener('click', () => {
-                const focusedInput = document.activeElement;
-                if (focusedInput.classList.contains('number-input')) {
+                if (focusedInput && focusedInput.classList.contains('number-input')) {
                     const currentId = parseInt(focusedInput.id.split('-')[2]);
                     if (currentId < 10) {
                         document.getElementById(`number-input-${currentId + 1}`).focus();
