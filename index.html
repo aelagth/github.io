@@ -106,11 +106,11 @@
 
     <script>
         // JavaScript를 사용하여 각 입력 칸의 입력 범위를 0부터 99로 설정합니다.
-            for (let i = 1; i <= 10; i++) {
-              const input = document.getElementById(`number-input-${i}`);
-              input.min = 0; // 최소값 설정
-              input.max = 99; // 최대값 설정
-            }
+        for (let i = 1; i <= 10; i++) {
+          const input = document.getElementById(`number-input-${i}`);
+          input.min = 0; // 최소값 설정
+          input.max = 99; // 최대값 설정
+        }
         
         document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submit-btn');
