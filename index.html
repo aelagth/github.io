@@ -67,11 +67,11 @@
         <th><label for="number-input-5">5번</label></th>
       </tr>
       <tr class="input-row">
-        <td><input id="number-input-1" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-2" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-3" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-4" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-5" type="number" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-1" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-2" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-3" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-4" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-5" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
       </tr>
       <tr class="input-row">
         <th><label for="number-input-6">6번</label></th>
@@ -81,11 +81,11 @@
         <th><label for="number-input-10">10번</label></th>
       </tr>
       <tr class="input-row">
-        <td><input id="number-input-6" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-7" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-8" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-9" type="number" pattern="\d*" class="number-input" required></td>
-        <td><input id="number-input-10" type="number" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-6" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-7" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-8" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-9" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
+        <td><input id="number-input-10" type="number" min="0" max="99" pattern="\d*" class="number-input" required></td>
      </tr>
     </table>
         <div class="button-container">
@@ -104,14 +104,7 @@
         <p id="result-closest"></p>
     </div>
 
-    <script>
-        // JavaScript를 사용하여 각 입력 칸의 입력 범위를 0부터 99로 설정합니다.
-        for (let i = 1; i <= 10; i++) {
-          const input = document.getElementById(`number-input-${i}`);
-          input.min = 0; // 최소값 설정
-          input.max = 99; // 최대값 설정
-        }
-        
+    <script>     
         document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submit-btn');
             const resetBtn = document.getElementById('reset-btn');
