@@ -123,7 +123,7 @@
             
           // 2자릿수 입력하면 다음칸으로 자동 이동      
             function moveToNext(input) {
-                if (input.value.length === 2) {
+                if (/^[0-99]{2)$/. test(input.value)) {
                     var nextInput = input.nextElementSibling;
                     if (nextInput) {
                         nextInput.focus();
