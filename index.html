@@ -67,11 +67,11 @@
         <th><label for="number-input-5">5번</label></th>
       </tr>
       <tr class="input-row">
-        <td><input id="number-input-1" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-2" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-3" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-4" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-5" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
+        <td><input id="number-input-1" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-2" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-3" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-4" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-5" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
       </tr>
       <tr class="input-row">
         <th><label for="number-input-6">6번</label></th>
@@ -81,11 +81,11 @@
         <th><label for="number-input-10">10번</label></th>
       </tr>
       <tr class="input-row">
-        <td><input id="number-input-6" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-7" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-8" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-9" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
-        <td><input id="number-input-10" type="text" pattern="\d*" maxlength="2" class="number-input" required></td>
+        <td><input id="number-input-6" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-7" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-8" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-9" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
+        <td><input id="number-input-10" type="text" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext (this)"></td>
      </tr>
     </table>
         <div class="button-container">
@@ -120,7 +120,17 @@
                     focusedInput = input;
                 });
             });
-
+            
+          // 2자릿수 입력하면 다음칸으로 자동 이동      
+            function moveToNext(input) {
+                if (input.value.length === 2) {
+                    var nextInput = input.nextElementSibling;
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            }
+            
             // 이전 및 다음 버튼 이벤트 리스너
             prevBtn.addEventListener('click', () => {
                 if (focusedInput && focusedInput.classList.contains('number-input')) {
