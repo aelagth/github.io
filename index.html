@@ -32,10 +32,15 @@
         margin-bottom: 10px;
       }
 
-      .input-row label {
-        margin-bottom: 5px;
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .input-group label {
         font-size: 18px;
-        text-align: center;
+        margin-bottom: 5px;
       }
 
       #submit-btn,
@@ -73,33 +78,51 @@
 
     <!-- 숫자 입력 필드 -->
     <div id="input-container">
+      <!-- 첫 번째 줄 -->
       <div class="input-row">
-        <label for="number-input-1">1번</label>
-        <label for="number-input-2">2번</label>
-        <label for="number-input-3">3번</label>
-        <label for="number-input-4">4번</label>
-        <label for="number-input-5">5번</label>
+        <div class="input-group">
+          <label for="number-input-1">1번</label>
+          <input id="number-input-1" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-2">2번</label>
+          <input id="number-input-2" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-3">3번</label>
+          <input id="number-input-3" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-4">4번</label>
+          <input id="number-input-4" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-5">5번</label>
+          <input id="number-input-5" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
       </div>
+      <!-- 두 번째 줄 -->
       <div class="input-row">
-        <input id="number-input-1" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-2" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-3" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-4" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-5" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-      </div>
-      <div class="input-row">
-        <label for="number-input-6">6번</label>
-        <label for="number-input-7">7번</label>
-        <label for="number-input-8">8번</label>
-        <label for="number-input-9">9번</label>
-        <label for="number-input-10">10번</label>
-      </div>
-      <div class="input-row">
-        <input id="number-input-6" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-7" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-8" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-9" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
-        <input id="number-input-10" type="tel" pattern="\d*" maxlength="2" class="number-input" required>
+        <div class="input-group">
+          <label for="number-input-6">6번</label>
+          <input id="number-input-6" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-7">7번</label>
+          <input id="number-input-7" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-8">8번</label>
+          <input id="number-input-8" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-9">9번</label>
+          <input id="number-input-9" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-10">10번</label>
+          <input id="number-input-10" type="tel" pattern="\d*" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
       </div>
     </div>
 
@@ -142,6 +165,26 @@
                     focusedInput = input;
                 });
             });
+
+            // 입력 칸 자동 이동 함수
+            window.moveToNext = function(input) {
+                if (input.value.length >= input.maxLength) {
+                    let nextInput = input.closest('.input-group').nextElementSibling;
+                    if (nextInput && nextInput.querySelector('.number-input')) {
+                        nextInput.querySelector('.number-input').focus();
+                    } else {
+                        // 다음 줄로 이동
+                        let parentRow = input.closest('.input-row');
+                        let nextRow = parentRow.nextElementSibling;
+                        if (nextRow) {
+                            let firstInput = nextRow.querySelector('.number-input');
+                            if (firstInput) {
+                                firstInput.focus();
+                            }
+                        }
+                    }
+                }
+            };
 
             // 이전 및 다음 버튼 이벤트
             prevBtn.addEventListener('click', () => {
@@ -212,13 +255,23 @@
                 // 캡쳐 버튼 숨기기
                 captureBtn.style.visibility = 'hidden';
 
+                // 주소 입력 필드에서 파일 이름 가져오기
+                let fileName = addressInput.value.trim();
+                if (!fileName) {
+                    fileName = 'screenshot';
+                }
+                // 파일 이름에 사용할 수 없는 문자 제거
+                fileName = fileName.replace(/[\\/:*?"<>|]/g, '');
+                // 확장자 추가
+                fileName += '.png';
+
                 html2canvas(document.body).then(canvas => {
                     // 캡쳐 버튼 다시 보이기
                     captureBtn.style.visibility = 'visible';
 
                     // 이미지 다운로드 링크 생성
                     var link = document.createElement('a');
-                    link.download = 'screenshot.png';
+                    link.download = fileName;
                     link.href = canvas.toDataURL();
                     link.click();
                 });
