@@ -37,6 +37,11 @@
         font-family: Arial, sans-serif;
       }
 
+      .container {
+        position: relative;
+        padding-top: 60px; /* 상단에 공간 확보 */
+      }
+
       .address-input {
         width: calc(100% - 20px);
         margin: 10px;
@@ -51,11 +56,11 @@
 
       .address-input::placeholder {
         font-size: 16px;
-        color: var(--input-text-color);
+        color: #888888; /* 회색 음영으로 변경 */
       }
 
       .number-input {
-        width: 50px;
+        width: 60px; /* 너비를 60px로 복원 */
         margin: 5px;
         padding: 5px;
         text-align: center;
@@ -115,6 +120,15 @@
         right: 10px;
         font-size: 18px;
         padding: 5px 10px;
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .theme-toggle:hover {
+        opacity: 0.9;
       }
 
       .button-container {
@@ -130,87 +144,92 @@
     </style>
 </head>
 <body>
-    <!-- 테마 변경 버튼 -->
-    <button type="button" id="theme-toggle" class="theme-toggle">테마 변경</button>
+    <!-- 컨테이너 시작 -->
+    <div class="container">
+        <!-- 테마 변경 버튼 -->
+        <button type="button" id="theme-toggle" class="theme-toggle">테마 변경</button>
 
-    <!-- 주소 입력 필드 -->
-    <input type="text" id="address-input" class="address-input" placeholder="주소를 입력하시고 밑에 캡쳐버튼을 눌러 저장하세요">
+        <!-- 주소 입력 필드 -->
+        <input type="text" id="address-input" class="address-input" placeholder="주소를 입력하시고 밑에 캡쳐버튼을 눌러 저장하세요">
 
-    <!-- 숫자 입력 필드 -->
-    <div id="input-container">
-      <!-- 첫 번째 줄 -->
-      <div class="input-row">
-        <!-- 1번부터 5번까지 -->
-        <div class="input-group">
-          <label for="number-input-1">1번</label>
-          <input id="number-input-1" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        <!-- 숫자 입력 필드 -->
+        <div id="input-container">
+          <!-- 첫 번째 줄 -->
+          <div class="input-row">
+            <!-- 1번부터 5번까지 -->
+            <div class="input-group">
+              <label for="number-input-1">1번</label>
+              <input id="number-input-1" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-2">2번</label>
+              <input id="number-input-2" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-3">3번</label>
+              <input id="number-input-3" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-4">4번</label>
+              <input id="number-input-4" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-5">5번</label>
+              <input id="number-input-5" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+          </div>
+          <!-- 두 번째 줄 -->
+          <div class="input-row">
+            <!-- 6번부터 10번까지 -->
+            <div class="input-group">
+              <label for="number-input-6">6번</label>
+              <input id="number-input-6" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-7">7번</label>
+              <input id="number-input-7" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-8">8번</label>
+              <input id="number-input-8" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-9">9번</label>
+              <input id="number-input-9" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+            <div class="input-group">
+              <label for="number-input-10">10번</label>
+              <input id="number-input-10" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <label for="number-input-2">2번</label>
-          <input id="number-input-2" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-3">3번</label>
-          <input id="number-input-3" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-4">4번</label>
-          <input id="number-input-4" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-5">5번</label>
-          <input id="number-input-5" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-      </div>
-      <!-- 두 번째 줄 -->
-      <div class="input-row">
-        <!-- 6번부터 10번까지 -->
-        <div class="input-group">
-          <label for="number-input-6">6번</label>
-          <input id="number-input-6" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-7">7번</label>
-          <input id="number-input-7" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-8">8번</label>
-          <input id="number-input-8" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-9">9번</label>
-          <input id="number-input-9" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-        <div class="input-group">
-          <label for="number-input-10">10번</label>
-          <input id="number-input-10" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
-        </div>
-      </div>
-    </div>
 
-    <!-- 버튼들 -->
-    <div class="button-container">
-        <button type="button" id="prev-btn" class="button">이전</button>
-        <button type="button" id="submit-btn" class="button">계산</button>
-        <button type="button" id="next-btn" class="button">다음</button>
-    </div>
-    <div class="button-container">
-        <button type="button" id="reset-btn" class="button wide-button">초기화</button>
-        <button type="button" id="capture-btn" class="button wide-button">캡쳐</button>
-    </div>
+        <!-- 버튼들 -->
+        <div class="button-container">
+            <button type="button" id="prev-btn" class="button">이전</button>
+            <button type="button" id="submit-btn" class="button">계산</button>
+            <button type="button" id="next-btn" class="button">다음</button>
+        </div>
+        <div class="button-container">
+            <button type="button" id="reset-btn" class="button wide-button">초기화</button>
+            <button type="button" id="capture-btn" class="button wide-button">캡쳐</button>
+        </div>
 
-    <!-- 결과 표시 -->
-    <div id="result-container">
-        <p id="result-sum"></p>
-        <p id="result-average"></p>
-        <p id="result-closest"></p>
+        <!-- 결과 표시 -->
+        <div id="result-container">
+            <p id="result-sum"></p>
+            <p id="result-average"></p>
+            <p id="result-closest"></p>
+        </div>
     </div>
+    <!-- 컨테이너 끝 -->
 
     <!-- html2canvas 라이브러리 포함 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 변수 정의
             const submitBtn = document.getElementById('submit-btn');
             const resetBtn = document.getElementById('reset-btn');
             const prevBtn = document.getElementById('prev-btn');
@@ -362,16 +381,7 @@
                     const span = document.createElement('span');
                     span.className = 'number-input';
                     span.innerText = value;
-                    span.style.width = input.style.width;
-                    span.style.margin = input.style.margin;
-                    span.style.padding = input.style.padding;
-                    span.style.fontSize = input.style.fontSize;
-                    span.style.textAlign = input.style.textAlign;
-                    span.style.border = input.style.border;
-                    span.style.borderRadius = input.style.borderRadius;
-                    span.style.boxSizing = input.style.boxSizing;
-                    span.style.backgroundColor = input.style.backgroundColor;
-                    span.style.color = input.style.color;
+                    Object.assign(span.style, window.getComputedStyle(input));
 
                     inputGroup.replaceChild(span, input);
 
@@ -385,16 +395,8 @@
                 const addressSpan = document.createElement('span');
                 addressSpan.className = 'address-input';
                 addressSpan.innerText = addressValue;
+                Object.assign(addressSpan.style, window.getComputedStyle(addressInput));
                 addressSpan.style.display = 'block';
-                addressSpan.style.width = addressInput.style.width;
-                addressSpan.style.margin = addressInput.style.margin;
-                addressSpan.style.padding = addressInput.style.padding;
-                addressSpan.style.fontSize = addressInput.style.fontSize;
-                addressSpan.style.boxSizing = addressInput.style.boxSizing;
-                addressSpan.style.backgroundColor = addressInput.style.backgroundColor;
-                addressSpan.style.color = addressInput.style.color;
-                addressSpan.style.border = addressInput.style.border;
-                addressSpan.style.borderRadius = addressInput.style.borderRadius;
 
                 addressParent.replaceChild(addressSpan, addressInput);
 
