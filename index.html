@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
     <title>주수 선정 계산기</title>
     <style>
+      :root {
+        /* 기본 테마 색상 변수 */
+        --bg-color: #ffffff;
+        --text-color: #000000;
+        --input-bg-color: #ffffff;
+        --input-text-color: #000000;
+        --input-border-color: #ccc;
+        --highlight-color: #ff0000;
+        --button-bg-color: #f0f0f0;
+        --button-text-color: #000000;
+      }
+
+      .dark-theme {
+        /* 다크 테마 색상 변수 */
+        --bg-color: #1e1e1e;
+        --text-color: #ffffff;
+        --input-bg-color: #2e2e2e;
+        --input-text-color: #ffffff;
+        --input-border-color: #555;
+        --highlight-color: #ff6347;
+        --button-bg-color: #3e3e3e;
+        --button-text-color: #ffffff;
+      }
+
       body {
         margin: 0;
         padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: Arial, sans-serif;
       }
 
       .address-input {
@@ -16,10 +43,15 @@
         padding: 10px;
         font-size: 18px;
         box-sizing: border-box;
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
+        border: 2px solid var(--input-border-color);
+        border-radius: 5px;
       }
 
       .address-input::placeholder {
         font-size: 16px;
+        color: var(--input-text-color);
       }
 
       .number-input {
@@ -28,14 +60,16 @@
         padding: 5px;
         text-align: center;
         font-size: 25px;
-        border: 2px solid #ccc;
+        border: 2px solid var(--input-border-color);
         border-radius: 5px;
         transition: border-color 0.3s;
         box-sizing: border-box;
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
       }
 
       .highlight {
-        border-color: #ff0000;
+        border-color: var(--highlight-color);
       }
 
       .input-row {
@@ -55,21 +89,32 @@
         margin-bottom: 5px;
       }
 
-      #submit-btn,
-      #prev-btn,
-      #next-btn {
+      .button {
         font-size: 24px;
         margin: 5px;
         padding: 10px;
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
         width: calc(33% - 20px);
       }
 
-      #reset-btn,
-      #capture-btn {
-        font-size: 24px;
-        margin: 5px;
-        padding: 10px;
+      .button:hover {
+        opacity: 0.9;
+      }
+
+      .wide-button {
         width: calc(50% - 20px);
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        padding: 5px 10px;
       }
 
       .button-container {
@@ -85,6 +130,9 @@
     </style>
 </head>
 <body>
+    <!-- 테마 변경 버튼 -->
+    <button type="button" id="theme-toggle" class="theme-toggle">테마 변경</button>
+
     <!-- 주소 입력 필드 -->
     <input type="text" id="address-input" class="address-input" placeholder="주소를 입력하시고 밑에 캡쳐버튼을 눌러 저장하세요">
 
@@ -92,25 +140,63 @@
     <div id="input-container">
       <!-- 첫 번째 줄 -->
       <div class="input-row">
-        <!-- 입력 그룹 반복 -->
-        <!-- ... 이전과 동일한 구조 ... -->
+        <!-- 1번부터 5번까지 -->
+        <div class="input-group">
+          <label for="number-input-1">1번</label>
+          <input id="number-input-1" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-2">2번</label>
+          <input id="number-input-2" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-3">3번</label>
+          <input id="number-input-3" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-4">4번</label>
+          <input id="number-input-4" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-5">5번</label>
+          <input id="number-input-5" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
       </div>
       <!-- 두 번째 줄 -->
       <div class="input-row">
-        <!-- 입력 그룹 반복 -->
-        <!-- ... 이전과 동일한 구조 ... -->
+        <!-- 6번부터 10번까지 -->
+        <div class="input-group">
+          <label for="number-input-6">6번</label>
+          <input id="number-input-6" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-7">7번</label>
+          <input id="number-input-7" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-8">8번</label>
+          <input id="number-input-8" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-9">9번</label>
+          <input id="number-input-9" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
+        <div class="input-group">
+          <label for="number-input-10">10번</label>
+          <input id="number-input-10" type="tel" maxlength="2" class="number-input" required oninput="moveToNext(this)">
+        </div>
       </div>
     </div>
 
     <!-- 버튼들 -->
     <div class="button-container">
-        <button type="button" id="prev-btn">이전</button>
-        <button type="button" id="submit-btn">계산</button>
-        <button type="button" id="next-btn">다음</button>
+        <button type="button" id="prev-btn" class="button">이전</button>
+        <button type="button" id="submit-btn" class="button">계산</button>
+        <button type="button" id="next-btn" class="button">다음</button>
     </div>
     <div class="button-container">
-        <button type="button" id="reset-btn">초기화</button>
-        <button type="button" id="capture-btn">캡쳐</button>
+        <button type="button" id="reset-btn" class="button wide-button">초기화</button>
+        <button type="button" id="capture-btn" class="button wide-button">캡쳐</button>
     </div>
 
     <!-- 결과 표시 -->
@@ -125,9 +211,141 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ... 이전과 동일한 코드 ...
+            const submitBtn = document.getElementById('submit-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const captureBtn = document.getElementById('capture-btn');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const numberInputs = document.querySelectorAll('.number-input');
+            const addressInput = document.getElementById('address-input');
+            const body = document.body;
 
-            // 캡쳐 함수 수정
+            let focusedInput = null;
+
+            // 테마 적용 함수
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+            }
+
+            // 로컬 스토리지에서 테마 로드
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            // 테마 토글 버튼 이벤트
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // 입력 칸 포커스 관리
+            numberInputs.forEach((input, index) => {
+                input.tabIndex = index + 1;
+                input.addEventListener('focus', () => {
+                    focusedInput = input;
+                });
+            });
+
+            // 입력 칸 자동 이동 함수
+            window.moveToNext = function(input) {
+                if (input.value.length >= input.maxLength) {
+                    let nextInput = input.closest('.input-group').nextElementSibling;
+                    if (nextInput && nextInput.querySelector('.number-input')) {
+                        nextInput.querySelector('.number-input').focus();
+                    } else {
+                        // 다음 줄로 이동
+                        let parentRow = input.closest('.input-row');
+                        let nextRow = parentRow.nextElementSibling;
+                        if (nextRow) {
+                            let firstInput = nextRow.querySelector('.number-input');
+                            if (firstInput) {
+                                firstInput.focus();
+                            }
+                        }
+                    }
+                }
+            };
+
+            // 이전 및 다음 버튼 이벤트
+            prevBtn.addEventListener('click', () => {
+                if (focusedInput && focusedInput.classList.contains('number-input')) {
+                    const currentId = parseInt(focusedInput.id.split('-')[2]);
+                    if (currentId > 1) {
+                        document.getElementById(`number-input-${currentId - 1}`).focus();
+                    }
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (focusedInput && focusedInput.classList.contains('number-input')) {
+                    const currentId = parseInt(focusedInput.id.split('-')[2]);
+                    if (currentId < 10) {
+                        document.getElementById(`number-input-${currentId + 1}`).focus();
+                    }
+                }
+            });
+
+            // 더블 탭 줌 방지
+            document.documentElement.addEventListener('touchstart', function(event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, false);
+
+            var lastTouchEnd = 0;
+
+            document.documentElement.addEventListener('touchend', function(event) {
+                var now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // 계산 함수
+            function calculate() {
+                const numbers = Array.from(numberInputs).map(input => parseInt(input.value) || 0);
+
+                const total = numbers.reduce((sum, num) => sum + num, 0);
+                const average = total / numbers.length;
+                const closestIndex = numbers.reduce((closest, num, index) => {
+                    return Math.abs(num - average) < Math.abs(numbers[closest] - average) ? index : closest;
+                }, 0);
+
+                document.getElementById('result-sum').innerText = `합: ${total}`;
+                document.getElementById('result-average').innerText = `평균: ${average.toFixed(2)}`;
+                document.getElementById('result-closest').innerText = `평균에 가장 가까운 주수는 ${closestIndex + 1}번 입니다.`;
+
+                // 이전 강조 제거
+                numberInputs.forEach(input => {
+                    input.classList.remove('highlight');
+                });
+
+                // 해당 입력 칸 강조
+                numberInputs[closestIndex].classList.add('highlight');
+            }
+
+            submitBtn.addEventListener('click', calculate);
+
+            // 초기화 함수
+            resetBtn.addEventListener('click', () => {
+                numberInputs.forEach(input => {
+                    input.value = '';
+                    input.classList.remove('highlight');
+                });
+                addressInput.value = '';
+                document.getElementById('result-sum').innerText = '';
+                document.getElementById('result-average').innerText = '';
+                document.getElementById('result-closest').innerText = '';
+            });
+
+            // 캡쳐 함수
             captureBtn.addEventListener('click', () => {
                 // 캡쳐 버튼 숨기기
                 captureBtn.style.visibility = 'hidden';
@@ -152,6 +370,8 @@
                     span.style.border = input.style.border;
                     span.style.borderRadius = input.style.borderRadius;
                     span.style.boxSizing = input.style.boxSizing;
+                    span.style.backgroundColor = input.style.backgroundColor;
+                    span.style.color = input.style.color;
 
                     inputGroup.replaceChild(span, input);
 
@@ -171,6 +391,10 @@
                 addressSpan.style.padding = addressInput.style.padding;
                 addressSpan.style.fontSize = addressInput.style.fontSize;
                 addressSpan.style.boxSizing = addressInput.style.boxSizing;
+                addressSpan.style.backgroundColor = addressInput.style.backgroundColor;
+                addressSpan.style.color = addressInput.style.color;
+                addressSpan.style.border = addressInput.style.border;
+                addressSpan.style.borderRadius = addressInput.style.borderRadius;
 
                 addressParent.replaceChild(addressSpan, addressInput);
 
