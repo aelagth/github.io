@@ -381,7 +381,23 @@
                     const span = document.createElement('span');
                     span.className = 'number-input';
                     span.innerText = value;
-                    Object.assign(span.style, window.getComputedStyle(input));
+
+                    // 필요한 스타일 개별적으로 복사
+                    span.style.width = input.style.width;
+                    span.style.margin = input.style.margin;
+                    span.style.padding = input.style.padding;
+                    span.style.fontSize = input.style.fontSize;
+                    span.style.textAlign = input.style.textAlign;
+                    span.style.border = input.style.border;
+                    span.style.borderRadius = input.style.borderRadius;
+                    span.style.boxSizing = input.style.boxSizing;
+                    span.style.backgroundColor = input.style.backgroundColor;
+                    span.style.color = input.style.color;
+
+                    // 강조 클래스가 있으면 추가
+                    if (input.classList.contains('highlight')) {
+                        span.classList.add('highlight');
+                    }
 
                     inputGroup.replaceChild(span, input);
 
@@ -395,8 +411,18 @@
                 const addressSpan = document.createElement('span');
                 addressSpan.className = 'address-input';
                 addressSpan.innerText = addressValue;
-                Object.assign(addressSpan.style, window.getComputedStyle(addressInput));
+
+                // 필요한 스타일 개별적으로 복사
                 addressSpan.style.display = 'block';
+                addressSpan.style.width = addressInput.style.width;
+                addressSpan.style.margin = addressInput.style.margin;
+                addressSpan.style.padding = addressInput.style.padding;
+                addressSpan.style.fontSize = addressInput.style.fontSize;
+                addressSpan.style.boxSizing = addressInput.style.boxSizing;
+                addressSpan.style.backgroundColor = addressInput.style.backgroundColor;
+                addressSpan.style.color = addressInput.style.color;
+                addressSpan.style.border = addressInput.style.border;
+                addressSpan.style.borderRadius = addressInput.style.borderRadius;
 
                 addressParent.replaceChild(addressSpan, addressInput);
 
@@ -426,6 +452,17 @@
                     // 주소 입력 필드 복원
                     addressParent.replaceChild(addressInput, addressSpan);
 
+                    // 캡쳐 버튼 다시 보이기
+                    captureBtn.style.visibility = 'visible';
+                }).catch(error => {
+                    console.error('캡쳐 중 오류 발생:', error);
+                    alert('캡쳐 중 오류가 발생했습니다. 콘솔을 확인하세요.');
+                    // 입력 필드 복원
+                    inputReplacements.forEach(({ inputGroup, input, span }) => {
+                        inputGroup.replaceChild(input, span);
+                    });
+                    // 주소 입력 필드 복원
+                    addressParent.replaceChild(addressInput, addressSpan);
                     // 캡쳐 버튼 다시 보이기
                     captureBtn.style.visibility = 'visible';
                 });
