@@ -103,11 +103,16 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        width: calc(33% - 20px);
       }
 
       .button:hover {
         opacity: 0.9;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .wide-button {
@@ -131,10 +136,21 @@
         opacity: 0.9;
       }
 
-      .button-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+      .reset-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        padding: 5px 10px;
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .reset-btn:hover {
+        opacity: 0.9;
       }
 
       #result-container p {
@@ -146,6 +162,8 @@
 <body>
     <!-- 컨테이너 시작 -->
     <div class="container">
+        <!-- 초기화 버튼 -->
+        <button type="button" id="reset-btn" class="reset-btn">초기화</button>
         <!-- 테마 변경 버튼 -->
         <button type="button" id="theme-toggle" class="theme-toggle">테마 변경</button>
 
@@ -210,9 +228,9 @@
             <button type="button" id="submit-btn" class="button">계산</button>
             <button type="button" id="next-btn" class="button">다음</button>
         </div>
+        <!-- 캡쳐 버튼 -->
         <div class="button-container">
-            <button type="button" id="reset-btn" class="button wide-button">초기화</button>
-            <button type="button" id="capture-btn" class="button wide-button">캡쳐</button>
+            <button type="button" id="capture-btn" class="button">캡쳐</button>
         </div>
 
         <!-- 결과 표시 -->
